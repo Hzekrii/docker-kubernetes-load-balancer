@@ -80,14 +80,15 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'project_cybersecurity',  # Your database name
-        'USER': 'postgres',              # Your PostgreSQL username
-        'PASSWORD': 'root',       # Your PostgreSQL password
-        'HOST': 'localhost',              # Or your PostgreSQL server address
-        'PORT': '5432',                   # Default PostgreSQL port
+        'NAME': os.getenv("DB_NAME", "project_cybersecurity"),
+        'USER': os.getenv("DB_USER", "project_user"),
+        'PASSWORD': os.getenv("DB_PASSWORD", "root"),
+        'HOST': os.getenv("DB_HOST", "localhost"),
+        'PORT': '5432',
     }
 }
 
