@@ -1,0 +1,13 @@
+<div class="home-container">
+  <div class="welcome-text">
+    <p>Bonjour <strong>{{ username }}</strong> !</p>
+  </div>
+  <button
+    mat-raised-button
+    color="warn"
+    class="logout-button"
+    (click)="logout()">
+    <mat-icon fontSet="mdi" fontIcon="mdi-logout"></mat-icon>
+    Logout
+  </button>
+</div>

@@ -1,0 +1,152 @@
+/* You can add global styles to this file, and also import other style files */
+@use '@angular/material' as mat;
+
+html,
+body {
+  --text-base: 1rem;
+
+  .custom-form-field {
+		@include mat.form-field-overrides(
+			(
+				outlined-outline-width: 1px,
+				filled-container-color: #e1e1e1,
+				filled-active-indicator-height: 0px,
+				filled-focus-active-indicator-height: 0px,
+				filled-label-display: block,
+			)
+		);
+
+		.mat-mdc-input-element {
+			padding-top: 3px !important;
+		}
+
+		.mdc-text-field--filled {
+			padding: 4px 16px !important;
+			border-radius: 0.75rem;
+			transition: border 0.2s ease-in-out;
+			border: 1px solid transparent;
+			font-weight: 400 !important;
+			font-size: var(--text-sm) !important;
+
+			// Base style for non-floating label
+			&:not(.mdc-text-field--disabled)
+				.mdc-floating-label:not(.mdc-floating-label--float-above) {
+				color: black;
+				font-weight: 400 !important;
+				font-size: 13px;
+			}
+
+			// Invalid state (normal and hover)
+			&:not(.mdc-text-field--disabled).mdc-text-field--invalid {
+				font-weight: 400 !important;
+				font-size: 13px !important;
+
+				.mdc-floating-label:not(.mdc-floating-label--float-above) {
+					color: var(--ft-color-text-primary) !important;
+				}
+
+				&:hover {
+					.mdc-floating-label:not(.mdc-floating-label--float-above) {
+						color: var(--ft-color-text-primary) !important;
+					}
+				}
+			}
+		}
+
+		// Floating label style
+		.mdc-floating-label--float-above {
+			margin-top: 4px !important;
+			font-weight: 400 !important;
+			font-size: 16px !important;
+			color: rgba(119, 118, 118, 0.6) !important;
+		}
+
+		.mat-mdc-form-field-error-wrapper {
+			padding: 0 8px !important;
+		}
+	}
+
+	.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f5f5f5;
+}
+
+.login-card {
+  width: 100%;
+  max-width: 400px;
+  padding: 2rem;
+  border-radius: 15px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.login-title {
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.error-message {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #f44336;
+  margin-top: 1rem;
+}
+
+.register-link {
+  text-align: center;
+  margin-top: 1.5rem;
+  color: #666;
+}
+
+.register-link a {
+  text-decoration: none;
+}
+
+.login-button-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.fancy-login-button {
+  background: linear-gradient(135deg, #3f51b5, #2196f3);
+  color: #fff;
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: 30px;
+  box-shadow: 0 4px 15px rgba(33, 150, 243, 0.4);
+  transition: all 0.3s ease;
+  text-transform: none;
+}
+
+.fancy-login-button:hover {
+  background: linear-gradient(135deg, #2196f3, #1e88e5);
+  box-shadow: 0 6px 20px rgba(33, 150, 243, 0.6);
+  transform: translateY(-1px);
+}
+
+.fancy-login-button:disabled {
+  background: #ccc;
+  box-shadow: none;
+  color: #666;
+  cursor: not-allowed;
+}
+
+}
+
