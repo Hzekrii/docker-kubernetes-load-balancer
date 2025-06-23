@@ -1,0 +1,55 @@
+version: "3.9"
+
+services:
+  db:
+    image: postgres:16
+    container_name: postgres_db
+    environment:
+      POSTGRES_DB: project_cybersecurity
+      POSTGRES_USER: project_user
+      POSTGRES_PASSWORD: root
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - cybernet
+
+  backend:
+    build:
+      context: ./backend
+    container_name: backend_service
+    command: poetry run python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - ./backend:/app
+    ports:
+      - "8000:8000"
+    environment:
+      - DB_HOST=db
+      - DB_NAME=project_cybersecurity
+      - DB_USER=project_user
+      - DB_PASSWORD=root
+    depends_on:
+      - db
+    networks:
+      - cybernet
+
+  frontend:
+    build:
+      context: ./frontend
+    container_name: frontend_service
+    volumes:
+      - ./frontend:/app
+    ports:
+      - "4200:4200"
+    depends_on:
+      - backend
+    networks:
+      - cybernet
+
+volumes:
+  postgres_data:
+
+networks:
+  cybernet:
+    driver: bridge
