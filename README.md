@@ -43,10 +43,10 @@ Your database and frontend dependencies are persisted with volumes, so data and 
 
 docker-kubernetes-load-balancer/
 │
-├── backend/ # Django + GraphQL API
-├── frontend/ # Angular + Nx frontend
+├── backend/          # Django + GraphQL API
+├── frontend/         # Angular + Nx frontend
 ├── docker-compose.yml
-└── README.md # You're here
+└── README.md         # You're here
 
 🧠 Notes
 
@@ -59,3 +59,4 @@ Volumes handle node_modules and PostgreSQL data persistence.
 ☁️ Kubernetes (Coming Soon)
 
 Kubernetes deployment instructions will be added by another team member.
+
