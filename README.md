@@ -1,62 +1,93 @@
-docker-kubernetes-load-balancer
+# 🚀 Docker-Kubernetes Load Balancer
 
-This project is a full-stack web application using:
+This project is a full-stack web application composed of:
 
-Frontend: Angular + Nx
+- **Frontend**: Angular (Nx workspace)
+- **Backend**: Django + GraphQL
+- **Database**: PostgreSQL
+- **Dockerized**: All services run with Docker Compose
 
-Backend: Django with GraphQL
+> 🛠 Kubernetes setup will be added later.
 
-Database: PostgreSQL
+---
 
-Containerization: Docker + Docker Compose
+## 📁 Project Structure
 
-Kubernetes configuration will be added later by a classmate.
-
-🔧 Requirements
-
-Docker & Docker Compose installed
-
-🚀 Getting Started
-
-Clone the project
-
-git clone https://github.com/your-username/docker-kubernetes-load-balancer.git
-cd docker-kubernetes-load-balancer
-
-Run the app
-
-docker compose up --build
-
-Wait for the containers to finish building. The app will be accessible at:
-
-Frontend: http://localhost:4200
-
-Backend: http://localhost:8000
-
-Stop the app
-
-docker compose down
-
-Your database and frontend dependencies are persisted with volumes, so data and installs are preserved between runs.
-
-📂 Project Structure
-
+```
 docker-kubernetes-load-balancer/
-│
-├── backend/          # Django + GraphQL API
-├── frontend/         # Angular + Nx frontend
+├── backend/        # Django backend
+├── frontend/       # Angular (Nx) frontend
 ├── docker-compose.yml
-└── README.md         # You're here
+└── README.md
+```
 
-🧠 Notes
+---
 
-User accounts and database data are saved across restarts.
+## 🧰 Prerequisites
 
-No need to manually delete .nx folder anymore.
+- [Docker](https://www.docker.com/)
+- [Docker Compose](https://docs.docker.com/compose/)
+- [Git](https://git-scm.com/)
 
-Volumes handle node_modules and PostgreSQL data persistence.
+---
 
-☁️ Kubernetes (Coming Soon)
+## ⚙️ Getting Started
 
-Kubernetes deployment instructions will be added by another team member.
+### 1. Clone the repository
 
+```bash
+git clone https://github.com/<your-username>/docker-kubernetes-load-balancer.git
+cd docker-kubernetes-load-balancer
+```
+
+### 2. Build and run the application
+
+```bash
+docker compose up --build
+```
+
+This will:
+- Reset Nx cache
+- Install frontend dependencies (cached)
+- Apply backend Django migrations
+- Start all services
+
+---
+
+## 🌐 Access Points
+
+- Frontend: [http://localhost:4200](http://localhost:4200)
+- Backend (GraphQL): [http://localhost:8000](http://localhost:8000)
+
+---
+
+## 🧼 Shutdown the Services
+
+```bash
+docker compose down
+```
+
+> The database data and node modules are persisted in Docker volumes.
+
+---
+
+## 🗂 Docker Volumes Used
+
+- `postgres_data`: Saves PostgreSQL data
+- `frontend_node_modules`: Caches frontend dependencies
+
+These volumes ensure data is **not lost** when using `docker compose down`.
+
+---
+
+## 📌 Note
+
+The frontend uses `npx nx reset` on every container start to avoid `.nx` caching issues.
+
+---
+
+## 🚧 Kubernetes
+
+Kubernetes configuration will be added later in this repo.
+
+---
