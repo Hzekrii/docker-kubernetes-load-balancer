@@ -2,12 +2,11 @@
 
 This project is a full-stack web application composed of:
 
-- **Frontend**: Angular (Nx workspace)
+- **Frontend**: Angular
 - **Backend**: Django + GraphQL
 - **Database**: PostgreSQL
 - **Dockerized**: All services run with Docker Compose
 
-> 🛠 Kubernetes setup will be added later.
 
 ---
 
@@ -16,7 +15,7 @@ This project is a full-stack web application composed of:
 ```
 docker-kubernetes-load-balancer/
 ├── backend/        # Django backend
-├── frontend/       # Angular (Nx) frontend
+├── frontend/       # Angular frontend
 ├── docker-compose.yml
 └── README.md
 ```
@@ -36,7 +35,7 @@ docker-kubernetes-load-balancer/
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/<your-username>/docker-kubernetes-load-balancer.git
+git clone https://github.com/Hzekrii/docker-kubernetes-load-balancer.git
 cd docker-kubernetes-load-balancer
 ```
 
