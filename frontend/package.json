@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "start": "nx serve cyber_security_front --host=0.0.0.0",
+    "start": "npx nx reset && nx serve cyber_security_front --host=0.0.0.0",
     "build": "nx build",
     "test": "nx test"
   },
