@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend # Ce nom sera utilisé pour la découverte DNS
+spec:
+  type: NodePort # Service interne (comme le réseau 'cybernet' dans Docker)
+  selector:
+    app: backend
+  ports:
+    - protocol: TCP
+      port: 8000 # Port du service
+      targetPort: 8000 # Port du conteneur
+

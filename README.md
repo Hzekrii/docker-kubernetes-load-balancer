@@ -17,6 +17,7 @@ docker-kubernetes-load-balancer/
 ├── backend/        # Django backend
 ├── frontend/       # Angular frontend
 ├── docker-compose.yml
+|__ k8s/
 └── README.md
 ```
 
@@ -90,3 +91,76 @@ The frontend uses `npx nx reset` on every container start to avoid `.nx` caching
 Kubernetes configuration will be added later in this repo.
 
 ---
+
+
+## Démarrer le cluster local
+```bash
+minikube start --driver=docker
+```
+
+## loader les images (apres Build and run the application dans les anciennes etapes)
+```bash
+eval $(minikube docker-env)
+```
+
+```bash
+ minikube image load docker-kubernetes-load-balancer-frontend:latest
+ ```
+
+```bash
+ minikube image load docker-kubernetes-load-balancer-backend:latest
+ ```
+
+```bash
+ docker pull postgres:16
+ ```
+## lister les images dans minikube 
+ ```bash
+ docker images
+ ```
+ il faut avoir : 
+
+ REPOSITORY                                       TAG       IMAGE ID       CREATED         SIZE
+docker-kubernetes-load-balancer-frontend         latest    f0ed3584e24f   28 hours ago    4.21GB
+docker-kubernetes-load-balancer-backend          latest    fe639427045c   34 hours ago    1.82GB
+postgres                                         16        2e7c735993bf   2 weeks ago     617MB
+
+
+
+## Appliquer les configurations Kubernetes
+
+```bash
+kubectl apply -f k8s/
+```
+## consulter les pods et les services 
+
+```bash
+kubectl get pods 
+``` 
+( les pods faut il etre en etat running )
+
+NAME                                   READY   STATUS    RESTARTS   AGE
+backend-deployment-55bb68bff4-4g5vz    1/1     Running   0          54m
+backend-deployment-55bb68bff4-4q2dq    1/1     Running   0          54m
+backend-deployment-55bb68bff4-8dxb8    1/1     Running   0          54m
+backend-deployment-55bb68bff4-fzf99    1/1     Running   0          54m
+frontend-deployment-679d8b8f59-njn66   1/1     Running   0          54m
+postgres-deployment-995596fb8-274pg    1/1     Running   0          54m
+
+```bash
+kubectl get svc
+```
+il faut avoir les service backend  frontend-service et postgres-service
+
+
+## Accéder à l'application
+
+# Backend 
+kubectl port-forward svc/backend 8000:8000
+
+
+# Frontend
+minikube service frontend-service --url
+
+# puis acceder a l'url generer 
+

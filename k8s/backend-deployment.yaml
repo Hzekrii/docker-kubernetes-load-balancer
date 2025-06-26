@@ -1,0 +1,53 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-deployment
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      containers:
+        - name: backend
+          command:
+            [
+              "poetry",
+              "run",
+              "python",
+              "manage.py",
+              "runserver",
+              "0.0.0.0:8000",
+            ]
+          env:
+            - name: DJANGO_SETTINGS_MODULE
+              value: mysite.settings
+            - name: PYTHONPATH
+              value: /app
+            - name: DB_ENGINE
+              value: django.db.backends.postgresql
+            - name: DB_HOST
+              value: postgres-service
+            - name: DB_NAME
+              value: project_cybersecurity
+            - name: DB_USER
+              value: project_user
+            - name: DB_PASSWORD
+              value: root
+            - name: DB_PORT
+              value: "5432"
+          image: docker-kubernetes-load-balancer-backend:latest
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 8000
+          resources:
+            limits:
+              cpu: 500m
+              memory: 512Mi
+            requests:
+              cpu: 250m
+              memory: 256Mi
