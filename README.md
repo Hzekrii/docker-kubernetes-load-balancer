@@ -159,6 +159,9 @@ kubectl get svc
 ```
 il faut avoir les service backend  frontend-service et postgres-service
 
+## migrate database
+kubectl exec -it backend-deployment-55bb68bff4-j2fw6 -- python manage.py migrate
+##
 
 ## Accéder à l'application
 
