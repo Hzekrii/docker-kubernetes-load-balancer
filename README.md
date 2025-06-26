@@ -91,9 +91,16 @@ The frontend uses `npx nx reset` on every container start to avoid `.nx` caching
 Kubernetes configuration will be added later in this repo.
 
 ---
+ **Docker** (doit être démarré pour exécuter les commandes)
+2. **Minikube** (cluster Kubernetes local)
+3. **kubectl** (outil de gestion Kubernetes)
 
+> 💡 Si Minikube n'est pas installé, suivez les instructions officielles : [https://minikube.sigs.k8s.io/docs/start/](https://minikube.sigs.k8s.io/docs/start/)
 
-## Démarrer le cluster local
+Si kubernetes n'est pas installé suivez les instructions
+ **kubectl** | [Installation](https://kubernetes.io/docs/tasks/tools/)
+
+## Démarrer le cluster local 
 ```bash
 minikube start --driver=docker
 ```
